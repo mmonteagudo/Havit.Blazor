@@ -71,6 +71,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{45BC
 		.github\FUNDING.yml = .github\FUNDING.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Havit.Blazor.Components.Web.Bootstrap.EntifyFrameworkCore.Tests", "Havit.Blazor.Components.Web.Bootstrap.EntifyFrameworkCore.Tests\Havit.Blazor.Components.Web.Bootstrap.EntifyFrameworkCore.Tests.csproj", "{AD166DF7-CAFA-4471-B6F2-CA188BC96E5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Havit.Blazor.TestApp", "Havit.Blazor.TestApp\Havit.Blazor.TestApp\Havit.Blazor.TestApp.csproj", "{9EF7E599-FF7D-4574-BF95-F439365F2B69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Havit.Blazor.TestApp.Client", "Havit.Blazor.TestApp\Havit.Blazor.TestApp.Client\Havit.Blazor.TestApp.Client.csproj", "{38D87399-13C1-4C86-9343-712EAE6095F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -161,6 +167,18 @@ Global
 		{F6A546C8-60C3-47AC-A58B-66E3513DCC7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6A546C8-60C3-47AC-A58B-66E3513DCC7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6A546C8-60C3-47AC-A58B-66E3513DCC7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD166DF7-CAFA-4471-B6F2-CA188BC96E5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD166DF7-CAFA-4471-B6F2-CA188BC96E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD166DF7-CAFA-4471-B6F2-CA188BC96E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD166DF7-CAFA-4471-B6F2-CA188BC96E5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EF7E599-FF7D-4574-BF95-F439365F2B69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF7E599-FF7D-4574-BF95-F439365F2B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EF7E599-FF7D-4574-BF95-F439365F2B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF7E599-FF7D-4574-BF95-F439365F2B69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38D87399-13C1-4C86-9343-712EAE6095F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D87399-13C1-4C86-9343-712EAE6095F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D87399-13C1-4C86-9343-712EAE6095F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D87399-13C1-4C86-9343-712EAE6095F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
