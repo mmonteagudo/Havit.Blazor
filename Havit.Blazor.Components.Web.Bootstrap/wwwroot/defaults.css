@@ -15,6 +15,7 @@
 	--hx-sidebar-background-color: 									transparent;
 	--hx-sidebar-collapsed-width: 									72px;
 	--hx-sidebar-width: 											250px;
+	--hx-sidebar-max-height: 										100vh;
 	--hx-sidebar-toggler-background: 								var(--bs-gray-500);
 	--hx-sidebar-item-font-size: 									1rem;
 	--hx-sidebar-item-padding: 										.75rem;
@@ -52,6 +53,7 @@
 	--hx-sidebar-brand-shortname-font-weight: 						600;
 	--hx-sidebar-brand-name-color: 									var(--bs-body-color);
 	--hx-sidebar-brand-name-font-weight: 							600;
+	--hx-sidebar-brand-gap: 										.25rem;
 	--hx-sidebar-footer-padding: 									1rem;
 	--hx-sidebar-footer-item-padding: 								.75rem;
 	--hx-sidebar-footer-item-margin: 								0;
@@ -85,6 +87,7 @@
 	--hx-context-menu-button-border-radius: 						var(--bs-border-radius-sm);
 	--hx-context-menu-button-padding: 								0 .25rem;
 	--hx-context-menu-button-hover-background: 						var(--bs-secondary-bg);
+	--hx-context-menu-button-font-size:								inherit;
 	--hx-context-menu-item-icon-margin: 							0 .5rem 0 0;
 
 	/* HxDropdown */
