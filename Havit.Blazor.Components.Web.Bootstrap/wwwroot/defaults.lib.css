@@ -1,4 +1,5 @@
-:root {
+:root, 
+[data-bs-theme=dark] {
 	/* HxAutosuggest */
 	--hx-autosuggest-input-close-icon-opacity: 						.25;
 	--hx-autosuggest-item-highlighted-background-color: 			var(--bs-tertiary-bg);
@@ -11,16 +12,17 @@
 	--hx-button-gap: 							.25rem;
 
 	/* HxSidebar */
-	--hx-sidebar-background-color: 									transparent;
+	--hx-sidebar-background-color: 									var(--bs-body-bg);
 	--hx-sidebar-collapsed-width: 									72px;
-	--hx-sidebar-width: 											250px;
+	--hx-sidebar-width: 											300px;
 	--hx-sidebar-max-height: 										100vh;
 	--hx-sidebar-toggler-background: 								var(--bs-gray-500);
 	--hx-sidebar-item-font-size: 									1rem;
+	--hx-sidebar-item-content-gap:									.75rem;
 	--hx-sidebar-item-padding: 										.75rem;
 	--hx-sidebar-item-color: 										var(--bs-body-color);
 	--hx-sidebar-item-icon-color: 									var(--bs-primary);
-	--hx-sidebar-item-border-radius: 								var(--bs-border-radius-lg);
+	--hx-sidebar-item-border-radius: 								var(--bs-border-radius);
 	--hx-sidebar-item-margin: 										0;
 	--hx-sidebar-item-hover-color: 									var(--bs-primary);
 	--hx-sidebar-item-hover-background-color: 						var(--bs-primary-rgb);
@@ -38,30 +40,31 @@
 	--hx-sidebar-parent-item-active-icon-color: 					var(--hx-sidebar-item-hover-icon-color);
 	--hx-sidebar-subitem-font-size: 								.875rem;
 	--hx-sidebar-subitem-padding: 									.5rem;
-	--hx-sidebar-subitem-margin: 									0 0 .25rem 2rem;
+	--hx-sidebar-subitem-margin: 									0 0 0 2rem;
 	--hx-sidebar-header-padding: 									1rem;
-	--hx-sidebar-body-padding: 										0 1rem;
+	--hx-sidebar-body-padding: 										0 1rem 1rem 1rem;
 	--hx-sidebar-body-nav-gap: 										.25rem;														
 	--hx-sidebar-brand-logo-width: 									2.5rem;
 	--hx-sidebar-brand-logo-height: 								2.5rem;
 	--hx-sidebar-brand-shortname-width: 							2.5rem;
 	--hx-sidebar-brand-shortname-height: 							2.5rem;
 	--hx-sidebar-brand-shortname-background-color: 					var(--bs-primary);
-	--hx-sidebar-brand-shortname-border-radius: 					.625rem;
+	--hx-sidebar-brand-shortname-border-radius: 					var(--bs-border-radius);
 	--hx-sidebar-brand-shortname-color: 							var(--bs-white);
 	--hx-sidebar-brand-shortname-font-weight: 						600;
 	--hx-sidebar-brand-name-color: 									var(--bs-body-color);
 	--hx-sidebar-brand-name-font-weight: 							600;
-	--hx-sidebar-brand-gap: 										.25rem;
-	--hx-sidebar-footer-padding: 									1rem;
+	--hx-sidebar-brand-gap: 										.5rem;
+	--hx-sidebar-footer-padding: 									0 1rem 1rem 1rem;
 	--hx-sidebar-footer-item-padding: 								.75rem;
 	--hx-sidebar-footer-item-margin: 								0;
 	--hx-sidebar-footer-item-font-size: 							1rem;
-	--hx-sidebar-footer-item-color: 								unset;
+	--hx-sidebar-footer-item-content-gap: 							.75rem;
+	--hx-sidebar-footer-item-color: 								var(--bs-body-color);
 	--hx-sidebar-footer-item-radius: 								unset;
 	--hx-sidebar-footer-item-hover-background-color: 				unset;
 	--hx-sidebar-footer-item-hover-background-opacity: 				unset;
-	--hx-sidebar-footer-item-hover-color: 							unset;
+	--hx-sidebar-footer-item-hover-color: 							var(--bs-body-color);
 
 	/* HxProgressOverlay */
 	--hx-progress-overlay-color: 									var(--bs-white);

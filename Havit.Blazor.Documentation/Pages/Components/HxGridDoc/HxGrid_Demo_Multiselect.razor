@@ -3,6 +3,7 @@
 <HxGrid TItem="EmployeeDto"
 		DataProvider="GetGridData"
 		MultiSelectionEnabled="true"
+		PreserveSelection="preserveSelection"
 		@bind-SelectedDataItems="selectedEmployees"
 		PageSize="5"
 		Responsive="true">
@@ -14,13 +15,16 @@
 		<HxGridColumn HeaderText="Location" ItemTextSelector="employee => employee.Location" />
 	</Columns>
 </HxGrid>
-
+<HxSwitch @bind-Value="preserveSelection" Text="@(preserveSelection ? "PreserveSelection=\"true\"" : "PreserveSelection=\"false\"")" />
+<hr />
 <p>
 	Selected employees: @(String.Join(", ", selectedEmployees.Select(e => e.Name)))
 </p>
 
+
 @code {
 	private HashSet<EmployeeDto> selectedEmployees = new();
+	private bool preserveSelection = false;
 
 	private async Task<GridDataProviderResult<EmployeeDto>> GetGridData(GridDataProviderRequest<EmployeeDto> request)
 	{
