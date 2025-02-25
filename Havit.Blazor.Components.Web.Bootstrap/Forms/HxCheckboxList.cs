@@ -192,7 +192,7 @@ public class HxCheckboxList<TValue, TItem> : HxInputBase<List<TValue>>, IInputWi
 	/// </summary>
 	public override ValueTask FocusAsync()
 	{
-		throw new NotSupportedException($"{nameof(FocusAsync)} is not supported on {nameof(HxCheckboxList<TValue, TItem>)}.");
+		throw new NotSupportedException($"[{GetType().Name}] {nameof(FocusAsync)} is not supported.");
 	}
 
 	/// <inheritdoc />

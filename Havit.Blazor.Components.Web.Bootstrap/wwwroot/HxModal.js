@@ -1,5 +1,12 @@
 ﻿export function show(element, hxModalDotnetObjectReference, closeOnEscape, subscribeToHideEvent) {
-	if (!element || bootstrap.Modal.getInstance(element)) {
+	if (window.modalElement) {
+		const previousModal = bootstrap.Modal.getInstance(window.modalElement);
+		if (previousModal) {
+			previousModal.hide();
+		}
+	}
+
+	if (!element) {
 		return;
 	}
 
@@ -9,6 +16,7 @@
 	}
 	element.addEventListener('hidden.bs.modal', handleModalHidden);
 	element.addEventListener('shown.bs.modal', handleModalShown);
+	window.modalElement = element;
 
 	const modal = new bootstrap.Modal(element, {
 		keyboard: closeOnEscape
@@ -31,7 +39,7 @@ export function hide(element) {
 
 function handleModalShown(event) {
 	event.target.hxModalDotnetObjectReference.invokeMethodAsync('HxModal_HandleModalShown');
-};
+}
 
 async function handleModalHide(event) {
 	const modalInstance = bootstrap.Modal.getInstance(event.target);
@@ -49,21 +57,21 @@ async function handleModalHide(event) {
 		event.target.hxModalHiding = true;
 		modalInstance.hide();
     }
-};
+}
 
 function handleModalHidden(event) {
 	event.target.hxModalHiding = false;
 
 	if (event.target.hxModalDisposing) {
-		// fix for #110 where the dispose() gets called while the offcanvas is still in hiding-transition
-		dispose(event.target);
+		// fix for #110 where the dispose() gets called while the modal is still in hiding-transition
+		dispose(event.target, false);
 		return;
 	}
 
 	event.target.hxModalDotnetObjectReference.invokeMethodAsync('HxModal_HandleModalHidden');
-};
+}
 
-export function dispose(element) {
+export function dispose(element, opened) {
 	if (!element) {
 		return;
 	}
@@ -71,7 +79,17 @@ export function dispose(element) {
 	element.hxModalDisposing = true;
 
 	if (element.hxModalHiding) {
-		// fix for #110 where the dispose() gets called while the offcanvas is still in hiding-transition
+		// fix for #110 where the dispose() gets called while the modal is still in hiding-transition
+		return;
+	}
+
+	if (opened) {
+		// #110 Scrolling not working when modal is removed (even if disposed is called)
+		// Compensates https://github.com/twbs/bootstrap/issues/36397,
+		// where the o.dispose() does not reset the ScrollBarHelper() and the scrolling remains deactivated.
+		// The dispose() is re-called from hidden.bs.modal event handler.
+		// Remove when the issue is fixed.
+		hide(element);
 		return;
 	}
 
