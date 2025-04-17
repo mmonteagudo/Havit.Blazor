@@ -19,11 +19,13 @@
             <summary>
             IDs of the expanded items (if <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.StayOpen"/> is <code>true</code>, several items can be expanded).
             Do not use a constant value as it resets the accordion on every roundtrip. Use <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.InitialExpandedItemIds"/> to set the initial state.
+            When <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.StayOpen"/> is <c>true</c>, this parameter must be used to manage expanded items, and the <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.ExpandedItemIdsChanged"/> event callback will be invoked for changes.
             </summary>
         </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.ExpandedItemId">
             <summary>
-            ID of the single expanded item (if <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.StayOpen"/> is <code>true</code>, use <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.ExpandedItemIds" />, several items can be expanded).
+            ID of the single expanded item. If <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.StayOpen"/> is <c>true</c>, this parameter is ignored, and you must use <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.ExpandedItemIds"/> instead.
+            When <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.StayOpen"/> is <c>true</c>, the <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.ExpandedItemIdChanged"/> event callback will not be invoked.
             Do not use a constant value as it reverts the accordion to that item on every roundtrip. Use <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.InitialExpandedItemId"/> to set the initial state.
             </summary>
         </member>
@@ -31,6 +33,7 @@
             <summary>
             Set to <c>true</c> to make accordion items stay open when another item is opened.
             The default is <c>false</c>, opening another item collapses the current item.
+            When <c>true</c>, <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.ExpandedItemIds"/> must be used to manage expanded items.
             </summary>
         </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxAccordion.InitialExpandedItemId">
@@ -412,6 +415,11 @@
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxButton.TooltipCssClass">
             <summary>
             Custom CSS class to render with the tooltip.
+            </summary>
+        </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxButton.TooltipContainer">
+            <summary>
+            Appends the tooltip to a specific element. Default is <c>body</c>.
             </summary>
         </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxButton.TooltipWrapperCssClass">
@@ -2254,6 +2262,16 @@
             Additional attributes to be splatted onto an underlying HTML element.
             </summary>
         </member>
+        <member name="T:Havit.Blazor.Components.Web.Bootstrap.Internal.ChipRemoveActionBuilder">
+            <summary>
+            ChipRemoveActionBuilder is responsible for generating an Action that resets
+            a property referenced by a lambda expression to a specified value (typically default).
+            
+            Unlike most expression-based tools, this builder defers all expression analysis to the point
+            of action invocation. This enables fast action construction (suitable for per-render use)
+            and evaluates constraints and assumptions only when the action is actually executed.
+            </summary>
+        </member>
         <member name="T:Havit.Blazor.Components.Web.Bootstrap.Internal.FormValueComponentExtensions">
             <summary>
             Extension methods for <see cref="T:Havit.Blazor.Components.Web.Bootstrap.Internal.IFormValueComponent" />.
@@ -2287,6 +2305,11 @@
         </member>
         <member name="M:Havit.Blazor.Components.Web.Bootstrap.Internal.HxFormValueComponentRenderer.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)">
             <inheritdoc />
+        </member>
+        <member name="M:Havit.Blazor.Components.Web.Bootstrap.Internal.HxFormValueComponentRenderer.BuildRenderValueWithFloatingLabel(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)">
+            <summary>
+            Renders the value/input and label inside floating label wrapper.
+            </summary>
         </member>
         <member name="M:Havit.Blazor.Components.Web.Bootstrap.Internal.HxFormValueComponentRenderer.BuildRenderLabel(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)">
             <summary>
@@ -9668,6 +9691,11 @@
             for all placeholders contained.
             </summary>
         </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxPlaceholderContainer.ElementName">
+            <summary>
+            Gets or sets the name of the element to render. Default is <code>span</code>.
+            </summary>
+        </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxPlaceholderContainer.Defaults">
             <summary>
             Application-wide defaults for <see cref="T:Havit.Blazor.Components.Web.Bootstrap.HxPlaceholderContainer"/> and derived components.
@@ -9717,6 +9745,12 @@
             Additional CSS class.
             </summary>
         </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxPlaceholderContainer.Active">
+            <summary>
+            Indicates whether the placeholder is active (if <c>false</c>, the component acts as regular HTML element).
+            Default is <c>true</c>.
+            </summary>
+        </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxPlaceholderContainer.AdditionalAttributes">
             <summary>
             Additional attributes to be splatted onto an underlying HTML element.
@@ -9745,6 +9779,11 @@
         <member name="T:Havit.Blazor.Components.Web.Bootstrap.PlaceholderContainerSettings">
             <summary>
             Settings for the <see cref="T:Havit.Blazor.Components.Web.Bootstrap.HxPlaceholderContainer"/> and derived components.
+            </summary>
+        </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.PlaceholderContainerSettings.ElementName">
+            <summary>
+            Gets or sets the name of the element to render.
             </summary>
         </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.PlaceholderContainerSettings.Animation">

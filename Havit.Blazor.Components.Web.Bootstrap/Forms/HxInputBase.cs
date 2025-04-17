@@ -1,4 +1,4 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using System.Reflection;
 using Havit.Blazor.Components.Web.Bootstrap.Internal;
 using Havit.Blazor.Components.Web.Infrastructure;
@@ -127,22 +127,7 @@ public abstract class HxInputBase<TValue> : InputBase<TValue>, ICascadeEnabledCo
 	/// <summary>
 	/// The CSS class to be rendered with the wrapping div.
 	/// </summary>
-	private protected virtual string CoreCssClass
-	{
-		get
-		{
-			var cssClass = "";
-			if ((this is IInputWithToggleButton tbutton) && (tbutton.InputAsToggleEffective == InputAsToggle.Toggle))
-			{
-				cssClass = CssClassHelper.Combine(cssClass, "btn-group");
-			}
-			if ((this is IInputWithLabelType inputWithLabelType) && (inputWithLabelType.LabelTypeEffective == LabelType.Floating))
-			{
-				cssClass = CssClassHelper.Combine(cssClass, "form-floating");
-			}
-			return CssClassHelper.Combine("hx-form-group position-relative", cssClass);
-		}
-	}
+	private protected virtual string CoreCssClass => "hx-form-group position-relative";
 
 	/// <summary>
 	/// The CSS class to be rendered with the input element.
@@ -473,14 +458,10 @@ public abstract class HxInputBase<TValue> : InputBase<TValue>, ICascadeEnabledCo
 	/// </summary>
 	protected virtual Action<object> GetChipRemoveAction()
 	{
-		string fieldName = FieldIdentifier.FieldName; // carefully! don't use "this" in lambda below to allow it for GC
 		TValue value = GetChipRemoveValue(); // carefully! don't use the method call in lambda below to allow "this" for GC
-		Action<object> removeAction = (model) =>
-		{
-			var propertyInfo = model.GetType().GetProperty(fieldName);
-			Contract.Assert(propertyInfo is not null, "Invalid FieldIdentifier. Check ValueExpression parameter.");
-			propertyInfo.SetValue(model, value);
-		};
+
+		var builder = new ChipRemoveActionBuilder(ValueExpression, value);
+		Action<object> removeAction = builder.Build();
 
 		return removeAction;
 	}
