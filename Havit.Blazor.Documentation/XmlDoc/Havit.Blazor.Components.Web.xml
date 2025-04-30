@@ -553,6 +553,9 @@
             <summary>
             Triggers the <see cref="P:Havit.Blazor.Components.Web.HxDynamicElement.OnClick"/> event. Allows interception of the event in derived components.
             </summary>
+            <remarks>
+            Please note, that this method is not called, when the <see cref="P:Havit.Blazor.Components.Web.HxDynamicElement.OnClick"/> parameter is not set.
+            </remarks>
         </member>
         <member name="P:Havit.Blazor.Components.Web.HxDynamicElement.OnClickStopPropagation">
             <summary>
@@ -672,8 +675,9 @@
         </member>
         <member name="P:Havit.Blazor.Components.Web.IconBase.RendererComponentType">
             <summary>
-            Renderer of the icon. Must have an Icon property which receives the instance of the icon (IconBase descendant instance).
-            See BootstrapIcon and <see cref="T:Havit.Blazor.Components.Web.HxIcon"/> implementations for more details.
+            Specifies the renderer component type for the icon.
+            For more details on implementing custom icons, refer to the 
+            <see href="https://havit.blazor.eu/components/HxIcon#custom-icons">documentation section on custom icons</see>.
             </summary>
         </member>
         <member name="T:Havit.Blazor.Components.Web.Infrastructure.CascadeEnabledComponent">
