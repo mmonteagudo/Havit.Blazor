@@ -119,7 +119,9 @@ public partial class HxCalendar
 
 	protected TimeProvider TimeProviderEffective => TimeProvider ?? GetSettings()?.TimeProvider ?? GetDefaults()?.TimeProvider ?? TimeProviderFromServices;
 
-	private CultureInfo Culture => CultureInfo.CurrentUICulture;
+	private CultureInfo UICulture => CultureInfo.CurrentUICulture;
+	private CultureInfo Culture => CultureInfo.CurrentCulture;
+
 	private DayOfWeek FirstDayOfWeek => Culture.DateTimeFormat.FirstDayOfWeek;
 	protected DateTime DisplayMonthFirstDay => new DateTime(DisplayMonth.Year, DisplayMonth.Month, 1);
 	protected DateTime FirstDayToDisplay
@@ -150,13 +152,17 @@ public partial class HxCalendar
 		bool lastKnownValueChanged = _lastKnownValue != Value;
 		_lastKnownValue = Value;
 
-		if (DisplayMonth == default)
+		// whenever the value is changed from outside, we set the display month to the value month
+		if (DisplayMonth == default || lastKnownValueChanged)
 		{
-			await SetDisplayMonthAsync(Value ?? TimeProviderEffective.GetLocalNow().Date);
-		}
-		else if ((Value != null) && lastKnownValueChanged && ((DisplayMonth.Year != Value.Value.Year) || (DisplayMonth.Month != Value.Value.Month)))
-		{
-			await SetDisplayMonthAsync(Value.Value);
+			if (Value != null)
+			{
+				await SetDisplayMonthAsync(Value.Value);
+			}
+			else
+			{
+				await SetDisplayMonthAsync(TimeProviderEffective.GetLocalNow().Date, limitDisplayMonthByMinMaxDateEffective: true);
+			}
 		}
 
 		UpdateRenderData();
@@ -177,7 +183,7 @@ public partial class HxCalendar
 		_renderData = new RenderData();
 		_renderData.DaysOfWeek = new List<string>(7);
 
-		string[] dayNames = Culture.DateTimeFormat.AbbreviatedDayNames;
+		string[] dayNames = UICulture.DateTimeFormat.AbbreviatedDayNames;
 		DayOfWeek firstDayOfWeek = FirstDayOfWeek;
 
 		DateTime minDateEffective = MinDateEffective;
@@ -185,14 +191,17 @@ public partial class HxCalendar
 		int minYear = minDateEffective.Year;
 		int maxYear = maxDateEffective.Year;
 
-		_renderData.Years = Enumerable.Range(minYear, maxYear - minYear + 1).Reverse().ToList();
+		_renderData.Years = Enumerable.Range(minYear, maxYear - minYear + 1)
+			.Union([DisplayMonth.Year])
+			.OrderByDescending(year => year)
+			.ToList();
 
 		for (int i = 0; i < 7; i++)
 		{
 			_renderData.DaysOfWeek.Add(dayNames[((int)firstDayOfWeek + i) % 7]);
 		}
 
-		_renderData.Months = Culture.DateTimeFormat.MonthNames.Take(12) // returns 13 items, see https://docs.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo.monthnames
+		_renderData.Months = UICulture.DateTimeFormat.MonthNames.Take(12) // returns 13 items, see https://docs.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo.monthnames
 			.Select((name, index) => new MonthData
 			{
 				Index = index,
@@ -259,13 +268,19 @@ public partial class HxCalendar
 		});
 	}
 
-	private async Task SetDisplayMonthAsync(DateTime newDisplayMonth)
+	private async Task SetDisplayMonthAsync(DateTime newDisplayMonth, bool limitDisplayMonthByMinMaxDateEffective = false)
 	{
-		newDisplayMonth = new[] { newDisplayMonth, new DateTime(MinDateEffective.Year, MinDateEffective.Month, 1) }.Max();
-		newDisplayMonth = new[] { newDisplayMonth, new DateTime(MaxDateEffective.Year, MaxDateEffective.Month, 1) }.Min();
+		if (limitDisplayMonthByMinMaxDateEffective)
+		{
+			newDisplayMonth = new[] { newDisplayMonth, new DateTime(MinDateEffective.Year, MinDateEffective.Month, 1) }.Max();
+			newDisplayMonth = new[] { newDisplayMonth, new DateTime(MaxDateEffective.Year, MaxDateEffective.Month, 1) }.Min();
+		}
 
-		DisplayMonth = newDisplayMonth;
-		await InvokeDisplayMonthChangedAsync(newDisplayMonth);
+		if (DisplayMonth != newDisplayMonth)
+		{
+			DisplayMonth = newDisplayMonth;
+			await InvokeDisplayMonthChangedAsync(newDisplayMonth);
+		}
 	}
 
 	private async Task HandlePreviousMonthClickAsync()
