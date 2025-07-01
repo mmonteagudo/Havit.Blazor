@@ -18,6 +18,11 @@ public abstract class HxSelectBase<TValue, TItem> : HxInputBaseWithInputGroups<T
 	protected override SelectSettings GetDefaults() => HxSelect.Defaults;
 
 	/// <summary>
+	/// Gets or sets a value indicating whether an exception should be thrown when data is not found.
+	/// </summary>
+	[Parameter] public bool ExceptionOnDataNotFound { get; set; } = true;
+
+	/// <summary>
 	/// Set of settings to be applied to the component instance (overrides <see cref="HxSelect.Defaults"/>, overridden by individual parameters).
 	/// </summary>
 	[Parameter] public SelectSettings Settings { get; set; }
@@ -235,10 +240,9 @@ public abstract class HxSelectBase<TValue, TItem> : HxInputBaseWithInputGroups<T
 			// set next properties for rendering
 			_selectedItemIndex = _itemsToRender.FindIndex(item => _comparer.Equals(Value, SelectorHelpers.GetValue<TItem, TValue>(ValueSelectorImpl, item)));
 
-			if ((Value != null) && (_selectedItemIndex == -1))
+			if ((Value != null) && (_selectedItemIndex == -1) && ExceptionOnDataNotFound)
 			{
-				//Don't want to throw an exception here, because it is a common case when the value is not in the data.
-				//throw new InvalidOperationException($"[{GetType().Name}] Data does not contain item for current value '{Value}'.");
+				throw new InvalidOperationException($"[{GetType().Name}] Data does not contain item for current value '{Value}'.");
 			}
 		}
 		else
