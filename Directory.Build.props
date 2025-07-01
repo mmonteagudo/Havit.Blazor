@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
 
 	<PropertyGroup>
 		<Company>HAVIT, s.r.o.</Company>
@@ -14,7 +14,7 @@
 		<SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
 
 		<!-- aligned NuGet PackageVersion for package-bundles -->
-		<ComponentsPackagesVersion>4.16.0</ComponentsPackagesVersion>
+		<ComponentsPackagesVersion>4.16.1-alpha1</ComponentsPackagesVersion>
 		<GrpcPackagesVersion>1.6.4</GrpcPackagesVersion>
 
 		<EnableMSTestRunner>true</EnableMSTestRunner>
