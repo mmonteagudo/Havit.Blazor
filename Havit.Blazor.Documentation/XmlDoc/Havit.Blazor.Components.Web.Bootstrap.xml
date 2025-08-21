@@ -3809,13 +3809,6 @@
             This overrides the field specified in <see cref="!:ValueExpression"/> for validation messages.
             </summary>
         </member>
-        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxInputBase`1.ValidationFor">
-            <summary>
-            Specifies the field for which validation messages should be displayed.
-            Mutual exclusive with <see cref="!:For"/> and <see cref="!:ForFieldName"/>.
-            This overrides the field specified in <see cref="!:ValueExpression"/> for validation messages.
-            </summary>
-        </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxInputBase`1.ValidationEditContext">
             <summary>
             Specifies a custom EditorContext for validation messages on this component.
@@ -5119,6 +5112,11 @@
             Return <see cref="T:Havit.Blazor.Components.Web.Bootstrap.HxSelect`2"/> defaults.
             Enables not sharing defaults in descendants with base classes.
             Enables having multiple descendants that differ in the default values.
+            </summary>
+        </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxSelectBase`2.ExceptionOnDataNotFound">
+            <summary>
+            Gets or sets a value indicating whether an exception should be thrown when data is not found.
             </summary>
         </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxSelectBase`2.Settings">

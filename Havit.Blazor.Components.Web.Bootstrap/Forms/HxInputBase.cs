@@ -50,12 +50,6 @@ public abstract class HxInputBase<TValue> : InputBase<TValue>, ICascadeEnabledCo
 	[Parameter] public string ValidationForFieldName { get; set; }
 
 	/// <summary>
-	/// Specifies the field for which validation messages should be displayed.
-	/// Mutual exclusive with <see cref="For"/> and <see cref="ForFieldName"/>.
-	/// This overrides the field specified in <see cref="ValueExpression"/> for validation messages.
-	/// </summary>
-	[Parameter] public Expression<Func<TValue>> ValidationFor { get; set; }
-	/// <summary>
 	/// Specifies a custom EditorContext for validation messages on this component.
 	/// This overrides the cascading <see cref="EditContext"/>.
 	/// </summary>
@@ -248,11 +242,6 @@ public abstract class HxInputBase<TValue> : InputBase<TValue>, ICascadeEnabledCo
 		{
 			throw new InvalidOperationException($"[{GetType().Name}] Cannot use {nameof(IInputWithPlaceholder.Placeholder)} with floating labels.");
 		}
-
-		if (!string.IsNullOrEmpty(ValidationForFieldName) && ValidationFor != null)
-		{
-			throw new InvalidOperationException($"Cannot use {nameof(ValidationForFieldName)} and {nameof(ValidationFor)} at the same time.");
-		}
 	}
 
 	/// <summary>
@@ -392,7 +381,7 @@ public abstract class HxInputBase<TValue> : InputBase<TValue>, ICascadeEnabledCo
 				builder.AddAttribute(2, nameof(HxValidationMessage<TValue>.EditContext), _autoCreatedEditContext);
 			}
 			builder.AddAttribute(3, nameof(HxValidationMessage<TValue>.Id), ValidationMessageId);
-			
+
 			if (!string.IsNullOrEmpty(ValidationForFieldName))
 			{
 				builder.AddAttribute(4, nameof(HxValidationMessage<TValue>.ForFieldName), ValidationForFieldName);
@@ -402,7 +391,7 @@ public abstract class HxInputBase<TValue> : InputBase<TValue>, ICascadeEnabledCo
 				builder.AddAttribute(4, nameof(HxValidationMessage<TValue>.For), ValueExpression);
 			}
 
-            builder.AddAttribute(5, nameof(HxValidationMessage<TValue>.Mode), ValidationMessageModeEffective);
+			builder.AddAttribute(5, nameof(HxValidationMessage<TValue>.Mode), ValidationMessageModeEffective);
 			builder.CloseComponent();
 		}
 	}
