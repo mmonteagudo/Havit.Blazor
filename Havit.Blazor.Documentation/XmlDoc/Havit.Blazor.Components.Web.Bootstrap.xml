@@ -3438,9 +3438,6 @@
         <member name="M:Havit.Blazor.Components.Web.Bootstrap.HxAutosuggest`2.FocusAsync">
             <inheritdoc />
         </member>
-        <member name="M:Havit.Blazor.Components.Web.Bootstrap.HxAutosuggest`2.RenderChipGenerator(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)">
-            <inheritdoc />
-        </member>
         <member name="M:Havit.Blazor.Components.Web.Bootstrap.HxAutosuggest`2.RenderChipValue(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)">
             <inheritdoc />
         </member>
@@ -4420,6 +4417,19 @@
             Determines whether all the content within the input field is automatically selected when it receives focus.
             </summary>
         </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxInputNumber`1.SmartPaste">
+            <summary>
+            When enabled, pasted values are normalized to contain only valid numeric characters.
+            Default is <c>true</c>.
+            </summary>
+        </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxInputNumber`1.SmartKeyboard">
+            <summary>
+            When enabled, the input may provide an optimized keyboard experience for numeric entry.
+            Currently, this means whenever a minus key is pressed, the sign of the number is toggled.
+            Default is <c>true</c>.
+            </summary>
+        </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxInputNumber`1.LabelType">
             <inheritdoc cref="T:Havit.Blazor.Components.Web.Bootstrap.LabelType" />
         </member>
@@ -5118,6 +5128,12 @@
             The default value is <c>true</c>.
             </summary>
         </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxSelect`2.ItemDisabledSelector">
+            <summary>
+            When set, determines whether an item is disabled (non-selectable and greyed out).
+            When returns <c>true</c>, the corresponding option will be rendered with <c>disabled</c> attribute.
+            </summary>
+        </member>
         <member name="T:Havit.Blazor.Components.Web.Bootstrap.HxSelect">
             <summary>
             Non-generic API for <see cref="T:Havit.Blazor.Components.Web.Bootstrap.HxSelect`2"/>.
@@ -5223,6 +5239,13 @@
             <summary>
             When <c>true</c>, items are sorted before displaying in select.
             Default value is <c>true</c>.
+            Base property for direct setup or to be re-published as <c>[Parameter] public</c>.
+            </summary>
+        </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxSelectBase`2.ItemDisabledSelectorImpl">
+            <summary>
+            When set, determines whether an item is disabled (non-selectable and greyed out).
+            When returns <c>true</c>, the corresponding option will be rendered with <c>disabled</c> attribute.
             Base property for direct setup or to be re-published as <c>[Parameter] public</c>.
             </summary>
         </member>
@@ -5511,6 +5534,17 @@
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.InputNumberSettings.SelectOnFocus">
             <summary>
             Determines whether all the content within the input field is automatically selected when it receives focus.
+            </summary>
+        </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.InputNumberSettings.SmartPaste">
+            <summary>
+            When enabled, pasted values are normalized to contain only valid numeric characters.
+            </summary>
+        </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.InputNumberSettings.SmartKeyboard">
+            <summary>
+            When enabled, the input may provide an optimized keyboard experience for numeric entry.
+            Currently, this means whenever a minus key is pressed, the sign of the number is toggled.
             </summary>
         </member>
         <member name="T:Havit.Blazor.Components.Web.Bootstrap.InputRangeSettings">
@@ -6740,11 +6774,6 @@
             For backward compatibility in custom projects.
             Once upon a time, this was the only constructor.
             </remarks>
-        </member>
-        <member name="M:Havit.Blazor.Components.Web.Bootstrap.GridUserState.#ctor">
-            <summary>
-            Constructor.
-            </summary>
         </member>
         <member name="T:Havit.Blazor.Components.Web.Bootstrap.GridUserStateSortingItem">
             <summary>
