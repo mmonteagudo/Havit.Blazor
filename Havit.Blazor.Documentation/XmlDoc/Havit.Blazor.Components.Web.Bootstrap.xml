@@ -5109,6 +5109,11 @@
             Enables having multiple descendants that differ in the default values.
             </summary>
         </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxSelectBase`2.ExceptionOnDataNotFound">
+            <summary>
+            Gets or sets a value indicating whether an exception should be thrown when data is not found.
+            </summary>
+        </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxSelectBase`2.Settings">
             <summary>
             Set of settings to be applied to the component instance (overrides <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxSelect.Defaults"/>, overridden by individual parameters).
