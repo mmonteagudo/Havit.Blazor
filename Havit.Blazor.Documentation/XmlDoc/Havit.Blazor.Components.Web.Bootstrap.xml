@@ -2548,6 +2548,21 @@
             Gets the CSS class for the input group size.
             </summary>
         </member>
+        <member name="T:Havit.Blazor.Components.Web.Bootstrap.Internal.IInputWithToggleButton">
+            <summary>
+            Represents an input with a toggle button option
+            </summary>
+        </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.Internal.IInputWithToggleButton.InputAsToggle">
+            <summary>
+            Gets or sets the input as toggle or regular.
+            </summary>
+        </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.Internal.IInputWithToggleButton.InputAsToggleEffective">
+            <summary>
+            Gets the effective input type.
+            </summary>
+        </member>
         <member name="T:Havit.Blazor.Components.Web.Bootstrap.Internal.LabelValueRenderOrder">
             <summary>
             Specifies the render order of label and value/input.
@@ -3129,21 +3144,6 @@
             The maximum file size in bytes.
             When exceeded, the <see cref="P:Havit.Blazor.Components.Web.Bootstrap.HxInputFileDropZone.OnFileUploaded"/> returns <c>413-RequestEntityTooLarge</c> as <see cref="P:Havit.Blazor.Components.Web.FileUploadedEventArgs.ResponseStatus"/>.
             Default is <c>null</c> (unlimited).
-            </summary>
-        </member>
-        <member name="T:Havit.Blazor.Components.Web.Bootstrap.Internal.IInputWithToggleButton">
-            <summary>
-            Represents an input with a toggle button option
-            </summary>
-        </member>
-        <member name="P:Havit.Blazor.Components.Web.Bootstrap.Internal.IInputWithToggleButton.InputAsToggle">
-            <summary>
-            Gets or sets the input as toggle or regular.
-            </summary>
-        </member>
-        <member name="P:Havit.Blazor.Components.Web.Bootstrap.Internal.IInputWithToggleButton.InputAsToggleEffective">
-            <summary>
-            Gets the effective input type.
             </summary>
         </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxInputFileDropZone.Accept">
