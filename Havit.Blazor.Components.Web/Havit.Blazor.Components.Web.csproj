@@ -23,6 +23,7 @@
 		<Description>HAVIT Blazor Library - Free UI components and supportive classes</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://havit.blazor.eu</PackageProjectUrl>
+		<PackageOutputPath>D:\HomeLifeAcademy\ExternalPackages\packages</PackageOutputPath>
 	</PropertyGroup>
 
 	<ItemGroup>
