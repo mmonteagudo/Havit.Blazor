@@ -15,6 +15,11 @@ public abstract class HxRadioButtonListBase<TValue, TItem> : HxInputBase<TValue>
 	[Parameter] public bool Inline { get; set; }
 
 	/// <summary>
+	/// Gets or sets a value indicating whether an exception should be thrown when data is not found.
+	/// </summary>
+	[Parameter] public bool ExceptionOnDataNotFound { get; set; } = true;
+
+	/// <summary>
 	/// Selects a value from an item.
 	/// Not required when <c>TValueType</c> is the same as <c>TItemTime</c>.
 	/// Base property for direct setup or to be re-published as <c>[Parameter] public</c>.
@@ -210,7 +215,7 @@ public abstract class HxRadioButtonListBase<TValue, TItem> : HxInputBase<TValue>
 			// set next properties for rendering
 			_selectedItemIndex = _itemsToRender.FindIndex(item => _comparer.Equals(Value, SelectorHelpers.GetValue<TItem, TValue>(ItemValueSelectorImpl, item)));
 
-			if ((Value != null) && (_selectedItemIndex == -1))
+			if ((Value != null) && (_selectedItemIndex == -1) && ExceptionOnDataNotFound)
 			{
 				throw new InvalidOperationException($"[{GetType().Name}] Data does not contain item for current value '{Value}'.");
 			}
