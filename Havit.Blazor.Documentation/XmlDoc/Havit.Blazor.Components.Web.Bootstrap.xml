@@ -4958,6 +4958,11 @@
             Allows grouping radios on the same horizontal row by rendering them inline. Default is <c>false</c>.
             </summary>
         </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxRadioButtonListBase`2.ExceptionOnDataNotFound">
+            <summary>
+            Gets or sets a value indicating whether an exception should be thrown when data is not found.
+            </summary>
+        </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxRadioButtonListBase`2.ItemValueSelectorImpl">
             <summary>
             Selects a value from an item.
