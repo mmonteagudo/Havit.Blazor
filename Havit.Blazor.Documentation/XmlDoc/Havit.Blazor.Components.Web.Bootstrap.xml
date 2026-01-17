@@ -5153,6 +5153,11 @@
             Allows grouping radios on the same horizontal row by rendering them inline. Default is <c>false</c>.
             </summary>
         </member>
+        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxRadioButtonListBase`2.ExceptionOnDataNotFound">
+            <summary>
+            Gets or sets a value indicating whether an exception should be thrown when data is not found.
+            </summary>
+        </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxRadioButtonListBase`2.RenderMode">
             <summary>
             Radio button list render mode. The default value is <see cref="F:Havit.Blazor.Components.Web.Bootstrap.RadioButtonListRenderMode.RadioButtons"/>.
@@ -5167,11 +5172,6 @@
             <summary>
             Indicates whether to use <see href="https://getbootstrap.com/docs/5.3/components/buttons/#outline-buttons">Bootstrap "outline" buttons</see>.
             for <see cref="F:Havit.Blazor.Components.Web.Bootstrap.RadioButtonListRenderMode.ToggleButtons"/> and <see cref="F:Havit.Blazor.Components.Web.Bootstrap.RadioButtonListRenderMode.ButtonGroup"/>.
-            </summary>
-        </member>
-        <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxRadioButtonListBase`2.ExceptionOnDataNotFound">
-            <summary>
-            Gets or sets a value indicating whether an exception should be thrown when data is not found.
             </summary>
         </member>
         <member name="P:Havit.Blazor.Components.Web.Bootstrap.HxRadioButtonListBase`2.ItemValueSelectorImpl">
