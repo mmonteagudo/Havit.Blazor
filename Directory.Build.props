@@ -14,8 +14,8 @@
 		<SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
 
 		<!-- aligned NuGet PackageVersion for package-bundles -->
-		<ComponentsPackagesVersion>4.21.1-alpha1</ComponentsPackagesVersion>
-		<GrpcPackagesVersion>1.8.0</GrpcPackagesVersion>
+		<ComponentsPackagesVersion>4.22.1-alpha1</ComponentsPackagesVersion>
+		<GrpcPackagesVersion>1.8.1</GrpcPackagesVersion>
 
 		<EnableMSTestRunner>true</EnableMSTestRunner>
 		<TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
