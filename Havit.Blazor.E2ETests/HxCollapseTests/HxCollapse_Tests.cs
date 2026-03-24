@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace Havit.Blazor.E2ETests.HxCollapseTests;
 
 [TestClass]
@@ -42,6 +44,10 @@ public class HxCollapse_Tests : TestAppTestBase
 		// Act 1 - click toggle to show content
 		await toggleButton.ClickAsync();
 		await Expect(collapseContent).ToBeVisibleAsync(new() { Timeout = 5_000 });
+
+		// Wait for the show transition to complete (Bootstrap adds "show" class when done)
+		var collapseElement = Page.Locator("[data-testid='collapse-content']");
+		await Expect(collapseElement).ToHaveClassAsync(new Regex("\\bshow\\b"), new() { Timeout = 5_000 });
 
 		// Act 2 - click toggle again to hide content
 		await toggleButton.ClickAsync();
