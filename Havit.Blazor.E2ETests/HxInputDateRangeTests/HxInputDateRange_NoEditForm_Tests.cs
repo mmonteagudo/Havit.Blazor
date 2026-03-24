@@ -1,4 +1,4 @@
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace Havit.Blazor.E2ETests.HxInputDateRangeTests;
 
@@ -11,6 +11,7 @@ public class HxInputDateRange_NoEditForm_Tests : TestAppTestBase
 		// Arrange
 		await NavigateToTestAppAsync("/HxInputDateRange_NoEditForm");
 
+		await Expect(Page.Locator("input[type='text']")).ToHaveCountAsync(2);
 		var inputs = await Page.Locator("input[type='text']").AllAsync();
 		var fromInput = inputs[0];
 		var toInput = inputs[1];
@@ -51,6 +52,7 @@ public class HxInputDateRange_NoEditForm_Tests : TestAppTestBase
 		// Arrange
 		await NavigateToTestAppAsync("/HxInputDateRange_NoEditForm");
 
+		await Expect(Page.Locator("input[type='text']")).ToHaveCountAsync(2);
 		var inputs = await Page.Locator("input[type='text']").AllAsync();
 		var fromInput = inputs[0];
 		var toInput = inputs[1];
@@ -91,6 +93,7 @@ public class HxInputDateRange_NoEditForm_Tests : TestAppTestBase
 		// Arrange
 		await NavigateToTestAppAsync("/HxInputDateRange_NoEditForm");
 
+		await Expect(Page.Locator("input[type='text']")).ToHaveCountAsync(2);
 		var inputs = await Page.Locator("input[type='text']").AllAsync();
 		var fromInput = inputs[0];
 		var toInput = inputs[1];
@@ -172,6 +175,7 @@ public class HxInputDateRange_NoEditForm_Tests : TestAppTestBase
 		// Arrange
 		await NavigateToTestAppAsync("/HxInputDateRange_NoEditForm");
 
+		await Expect(Page.Locator("input[type='text']")).ToHaveCountAsync(2);
 		var inputs = await Page.Locator("input[type='text']").AllAsync();
 		var fromInput = inputs[0];
 		var toInput = inputs[1];
@@ -211,6 +215,7 @@ public class HxInputDateRange_NoEditForm_Tests : TestAppTestBase
 		// Arrange
 		await NavigateToTestAppAsync("/HxInputDateRange_NoEditForm");
 
+		await Expect(Page.Locator("input[type='text']")).ToHaveCountAsync(2);
 		var inputs = await Page.Locator("input[type='text']").AllAsync();
 		var fromInput = inputs[0];
 		var toInput = inputs[1];
@@ -241,6 +246,7 @@ public class HxInputDateRange_NoEditForm_Tests : TestAppTestBase
 		// Arrange
 		await NavigateToTestAppAsync("/HxInputDateRange_NoEditForm");
 
+		await Expect(Page.Locator("input[type='text']")).ToHaveCountAsync(2);
 		var inputs = await Page.Locator("input[type='text']").AllAsync();
 		var fromInput = inputs[0];
 		var toInput = inputs[1];
@@ -271,6 +277,7 @@ public class HxInputDateRange_NoEditForm_Tests : TestAppTestBase
 		// Arrange
 		await NavigateToTestAppAsync("/HxInputDateRange_NoEditForm");
 
+		await Expect(Page.Locator("input[type='text']")).ToHaveCountAsync(2);
 		var inputs = await Page.Locator("input[type='text']").AllAsync();
 		var fromInput = inputs[0];
 		var toInput = inputs[1];
@@ -322,6 +329,7 @@ public class HxInputDateRange_NoEditForm_Tests : TestAppTestBase
 		// Arrange
 		await NavigateToTestAppAsync("/HxInputDateRange_NoEditForm");
 
+		await Expect(Page.Locator("input[type='text']")).ToHaveCountAsync(2);
 		var inputs = await Page.Locator("input[type='text']").AllAsync();
 		var fromInput = inputs[0];
 		var toInput = inputs[1];

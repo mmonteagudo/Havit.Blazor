@@ -88,8 +88,8 @@ public class HxChipListTests : BunitTestBase
 			.ToList();
 
 		Assert.HasCount(2, badgeTexts, "Expected two remaining chip badges.");
-		Assert.IsTrue(badgeTexts.Any(t => t.Contains("State: Active")), "Expected 'State: Active' chip to remain.");
-		Assert.IsTrue(badgeTexts.Any(t => t.Contains("Company: HAVIT")), "Expected 'Company: HAVIT' chip to remain.");
-		Assert.IsFalse(badgeTexts.Any(t => t.Contains("Name: Peter")), "Expected 'Name: Peter' chip to be removed.");
+		Assert.Contains(t => t.Contains("State: Active"), badgeTexts, "Expected 'State: Active' chip to remain.");
+		Assert.Contains(t => t.Contains("Company: HAVIT"), badgeTexts, "Expected 'Company: HAVIT' chip to remain.");
+		Assert.DoesNotContain(t => t.Contains("Name: Peter"), badgeTexts, "Expected 'Name: Peter' chip to be removed.");
 	}
 }

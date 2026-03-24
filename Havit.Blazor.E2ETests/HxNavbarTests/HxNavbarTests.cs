@@ -1,7 +1,7 @@
-namespace Havit.Blazor.E2ETests.HxNavbarTests;
+﻿namespace Havit.Blazor.E2ETests.HxNavbarTests;
 
 [TestClass]
-public class HxNavbar_Tests : TestAppTestBase
+public class HxNavbarTests : TestAppTestBase
 {
 	private static readonly System.Text.RegularExpressions.Regex CollapseShowClassRegex = new System.Text.RegularExpressions.Regex("\\bshow\\b");
 
