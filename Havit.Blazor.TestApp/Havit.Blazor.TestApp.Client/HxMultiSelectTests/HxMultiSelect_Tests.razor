@@ -1,8 +1,12 @@
-@page "/HxMultiSelect_Tests"
+﻿@page "/HxMultiSelect"
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 
 <div class="m-3">
 	<h3>HxMultiSelect Tests</h3>
+
+	<div data-testid="outside-click-target" style="padding: 20px; margin-bottom: 20px; background-color: #f0f0f0;">
+		Click here to close dropdown
+	</div>
 
 	<div class="mb-3">
 		<HxMultiSelect TItem="string"
@@ -17,10 +21,6 @@
 	</div>
 
 	<p data-testid="selected-value">@(string.Join(", ", _selectedItems))</p>
-
-	<div data-testid="outside-click-target" style="padding: 20px; margin-top: 20px; background-color: #f0f0f0;">
-		Click here to close dropdown
-	</div>
 </div>
 
 @code {

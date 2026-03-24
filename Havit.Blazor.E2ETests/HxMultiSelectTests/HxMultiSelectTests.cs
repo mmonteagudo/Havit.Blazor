@@ -1,4 +1,4 @@
-namespace Havit.Blazor.E2ETests.HxMultiSelectTests;
+﻿namespace Havit.Blazor.E2ETests.HxMultiSelectTests;
 
 [TestClass]
 public class HxMultiSelectTests : TestAppTestBase
@@ -7,7 +7,7 @@ public class HxMultiSelectTests : TestAppTestBase
 	public async Task HxMultiSelect_ClickToggle_OpensDropdown()
 	{
 		// Arrange
-		await NavigateToTestAppAsync("/HxMultiSelectTests");
+		await NavigateToTestAppAsync("/HxMultiSelect");
 
 		var toggle = Page.Locator("[data-testid='toggle']");
 
@@ -22,7 +22,7 @@ public class HxMultiSelectTests : TestAppTestBase
 	public async Task HxMultiSelect_CheckMultipleOptions_AllSelected()
 	{
 		// Arrange
-		await NavigateToTestAppAsync("/HxMultiSelectTests");
+		await NavigateToTestAppAsync("/HxMultiSelect");
 
 		var toggle = Page.Locator("[data-testid='toggle']");
 		var selectedValueDisplay = Page.Locator("[data-testid='selected-value']");
@@ -40,7 +40,7 @@ public class HxMultiSelectTests : TestAppTestBase
 	public async Task HxMultiSelect_UncheckOption_RemovedFromValue()
 	{
 		// Arrange
-		await NavigateToTestAppAsync("/HxMultiSelectTests");
+		await NavigateToTestAppAsync("/HxMultiSelect");
 
 		var toggle = Page.Locator("[data-testid='toggle']");
 		var selectedValueDisplay = Page.Locator("[data-testid='selected-value']");
@@ -64,7 +64,7 @@ public class HxMultiSelectTests : TestAppTestBase
 	public async Task HxMultiSelect_SelectedItems_ShownAsSummaryText()
 	{
 		// Arrange
-		await NavigateToTestAppAsync("/HxMultiSelectTests");
+		await NavigateToTestAppAsync("/HxMultiSelect");
 
 		var toggle = Page.Locator("[data-testid='toggle']");
 
@@ -86,7 +86,7 @@ public class HxMultiSelectTests : TestAppTestBase
 	public async Task HxMultiSelect_ClickOutside_ClosesDropdown()
 	{
 		// Arrange
-		await NavigateToTestAppAsync("/HxMultiSelectTests");
+		await NavigateToTestAppAsync("/HxMultiSelect");
 
 		var toggle = Page.Locator("[data-testid='toggle']");
 
