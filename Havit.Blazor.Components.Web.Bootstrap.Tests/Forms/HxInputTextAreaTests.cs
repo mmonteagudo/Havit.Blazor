@@ -60,7 +60,7 @@ public class HxInputTextAreaTests : BunitTestBase
 
 		// Assert
 		Assert.IsNotNull(cut.Find($"div.{HxInputBase<object>.InvalidCssClass}"), "Component should display invalid CSS class.");
-		Assert.IsTrue(cut.Find("div.invalid-feedback").TextContent.Length > 0, "Validation error message should be displayed.");
+		Assert.IsGreaterThan(cut.Find("div.invalid-feedback").TextContent.Length, 0, "Validation error message should be displayed.");
 	}
 
 	[TestMethod]
