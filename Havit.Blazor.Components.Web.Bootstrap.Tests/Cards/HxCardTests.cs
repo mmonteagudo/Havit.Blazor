@@ -57,7 +57,7 @@ public class HxCardTests : BunitTestBase
 		var body = card.QuerySelector(".card-body");
 		var imgIndex = Array.IndexOf(childrenArray, img);
 		var bodyIndex = Array.IndexOf(childrenArray, body);
-		Assert.IsTrue(imgIndex < bodyIndex, "Image should be rendered before the body");
+		Assert.IsLessThan(bodyIndex, imgIndex, "Image should be rendered before the body");
 	}
 
 	[TestMethod]
