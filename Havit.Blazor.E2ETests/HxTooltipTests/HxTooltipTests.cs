@@ -1,7 +1,7 @@
-namespace Havit.Blazor.E2ETests.HxTooltipTests;
+﻿namespace Havit.Blazor.E2ETests.HxTooltipTests;
 
 [TestClass]
-public class HxTooltip_HoverShowHide_Tests : TestAppTestBase
+public class HxTooltipTests : TestAppTestBase
 {
 	[TestMethod]
 	public async Task HxTooltip_Hover_ShowsTooltip()
@@ -43,8 +43,9 @@ public class HxTooltip_HoverShowHide_Tests : TestAppTestBase
 		// Wait for tooltip to appear
 		await Expect(Page.Locator(".tooltip")).ToBeVisibleAsync(new() { Timeout = 5_000 });
 
-		// Act - move mouse away from the trigger
-		await Page.Mouse.MoveAsync(0, 0);
+		// Act - move mouse away from the trigger (far enough to leave both trigger and tooltip)
+		var box = await trigger.BoundingBoxAsync();
+		await Page.Mouse.MoveAsync(box.X + box.Width + 200, box.Y + box.Height + 200);
 
 		// Assert - tooltip should be hidden
 		await Expect(Page.Locator(".tooltip")).Not.ToBeVisibleAsync(new() { Timeout = 5_000 });
