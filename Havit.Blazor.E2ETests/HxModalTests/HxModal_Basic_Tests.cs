@@ -1,4 +1,4 @@
-namespace Havit.Blazor.E2ETests.HxModalTests;
+﻿namespace Havit.Blazor.E2ETests.HxModalTests;
 
 [TestClass]
 public class HxModal_Basic_Tests : TestAppTestBase
@@ -50,15 +50,27 @@ public class HxModal_Basic_Tests : TestAppTestBase
 		await NavigateToTestAppAsync("/HxModal_Basic");
 
 		var openButton = Page.Locator("[data-testid='open-button']");
+
+		// Set up a promise that resolves when Bootstrap's shown.bs.modal fires.
+		// Must be registered before opening the modal to avoid missing the event.
+		var shownTask = Page.EvaluateHandleAsync(@"() => new Promise(resolve => {
+			document.querySelector('.hx-modal').addEventListener('shown.bs.modal', resolve, { once: true });
+		})");
+
 		await openButton.ClickAsync();
 
 		var modalDialog = Page.Locator(".modal-dialog");
 		await Expect(modalDialog).ToBeVisibleAsync(new() { Timeout = 10_000 });
 
+		// Wait for the Bootstrap show-transition to fully complete (shown.bs.modal event).
+		// During the fade-in transition, Bootstrap sets _isTransitioning = true
+		// and ignores any hide() calls, so clicking the backdrop too early has no effect.
+		await shownTask;
+
 		// Act - Click the backdrop (the .modal element outside the dialog)
-		// Clicking near position (1, 1) of the modal overlay targets the backdrop area
+		// Clicking near position (10, 10) of the modal overlay targets the backdrop area
 		var modalOverlay = Page.Locator(".modal.show");
-		await modalOverlay.ClickAsync(new() { Position = new() { X = 1, Y = 1 } });
+		await modalOverlay.ClickAsync(new() { Position = new() { X = 10, Y = 10 } });
 
 		// Assert - The modal should be hidden
 		await Expect(modalDialog).Not.ToBeVisibleAsync(new() { Timeout = 10_000 });
