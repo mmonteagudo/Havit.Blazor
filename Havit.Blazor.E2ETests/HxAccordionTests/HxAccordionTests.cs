@@ -51,6 +51,12 @@ public class HxAccordionTests : TestAppTestBase
 		await header1.ClickAsync();
 		await Expect(body1).ToBeVisibleAsync(new() { Timeout = 5_000 });
 
+		// Wait for Blazor's async re-render to complete before clicking again.
+		// The collapse div's aria-expanded is only managed by Blazor (not Bootstrap JS).
+		// Initially absent (_isShown=false), it appears after re-render (_isShown=true),
+		// ensuring the SignalR-driven state sync has finished.
+		await Expect(Page.Locator(".accordion-collapse[aria-expanded]:has([data-testid='body-1'])")).ToBeAttachedAsync(new() { Timeout = 5_000 });
+
 		// Act 2 - Click the header again to collapse
 		await header1.ClickAsync();
 
