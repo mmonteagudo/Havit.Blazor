@@ -388,17 +388,17 @@ public partial class HxAutosuggestInternal<TItem, TValue> : IAsyncDisposable
 	private async Task HandleItemSelected(TItem item)
 	{
 		// user selected an item in the "dropdown".
-		await SetValueItemWithEventCallback(item);
 		_userInput = TextSelectorEffective(item);
 		_userInputModified = false;
+		await SetValueItemWithEventCallback(item);
 	}
 
 	private async Task ClearInputAsync()
 	{
 		// user clicked on a cross button (x)
-		await SetValueItemWithEventCallback(default);
 		_userInput = TextSelectorEffective(default);
 		_userInputModified = false;
+		await SetValueItemWithEventCallback(default);
 	}
 
 	protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -422,9 +422,9 @@ public partial class HxAutosuggestInternal<TItem, TValue> : IAsyncDisposable
 			_blurInProgress = false;
 			if (_userInputModified && !_isDropdownOpened)
 			{
-				await SetValueItemWithEventCallback(default);
 				_userInput = TextSelectorEffective(default);
 				_userInputModified = false;
+				await SetValueItemWithEventCallback(default);
 				StateHasChanged();
 			}
 		}
@@ -464,9 +464,9 @@ public partial class HxAutosuggestInternal<TItem, TValue> : IAsyncDisposable
 	{
 		if (_userInputModified && !_currentlyFocused)
 		{
-			await SetValueItemWithEventCallback(default);
 			_userInput = TextSelectorEffective(default);
 			_userInputModified = false;
+			await SetValueItemWithEventCallback(default);
 			StateHasChanged();
 		}
 		await DestroyDropdownAsync();

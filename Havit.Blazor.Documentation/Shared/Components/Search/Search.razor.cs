@@ -1,23 +1,18 @@
 ﻿using Havit.Blazor.Documentation.Services;
+using Microsoft.JSInterop;
 
 namespace Havit.Blazor.Documentation.Shared.Components;
 
-public partial class Search
+public partial class Search : IAsyncDisposable
 {
 	[Inject] private NavigationManager NavigationManager { get; set; }
 	[Inject] private IDocumentationCatalogService CatalogService { get; set; }
+	[Inject] private IJSRuntime JSRuntime { get; set; }
 
-	private SearchItem SelectedResult
-	{
-		get
-		{
-			return null;
-		}
-		set
-		{
-			NavigateToSelectedPage(value);
-		}
-	}
+	private IJSObjectReference _jsModule;
+	private DotNetObjectReference<Search> _dotNetObjectReference;
+	private bool _isMac;
+	private SearchItem _selectedResult;
 
 	private string _userInput;
 	private List<SearchItem> _searchItems;
@@ -30,14 +25,37 @@ public partial class Search
 			.ToList();
 	}
 
+	private bool _disposed;
+
 	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
 		if (firstRender)
 		{
-			if (_autosuggest is not null)
+			var isMacNew = await JSRuntime.InvokeAsync<bool>("eval", "navigator.platform.indexOf('Mac') > -1");
+			if (isMacNew != _isMac)
 			{
-				await _autosuggest.FocusAsync();
+				_isMac = isMacNew;
+				StateHasChanged();
 			}
+
+			_dotNetObjectReference = DotNetObjectReference.Create(this);
+			_jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/Search/Search.razor.js");
+			if (_disposed)
+			{
+				return;
+			}
+			await _jsModule.InvokeVoidAsync("initializeGlobalSearchShortcut", _dotNetObjectReference);
+
+			await FocusSearchInputAsync();
+		}
+	}
+
+	[JSInvokable]
+	public async Task FocusSearchInputAsync()
+	{
+		if (_autosuggest is not null)
+		{
+			await _autosuggest.FocusAsync();
 		}
 	}
 
@@ -61,8 +79,21 @@ public partial class Search
 				.Take(8);
 	}
 
-	public void NavigateToSelectedPage(SearchItem searchItem)
+	public void NavigateToSelectedPage()
 	{
-		NavigationManager.NavigateTo(searchItem.Href);
+		var href = _selectedResult.Href;
+		_selectedResult = null;
+		NavigationManager.NavigateTo(href);
+	}
+
+	public async ValueTask DisposeAsync()
+	{
+		_disposed = true;
+		if (_jsModule is not null)
+		{
+			await _jsModule.InvokeVoidAsync("disposeGlobalSearchShortcut");
+			await _jsModule.DisposeAsync();
+		}
+		_dotNetObjectReference?.Dispose();
 	}
 }
